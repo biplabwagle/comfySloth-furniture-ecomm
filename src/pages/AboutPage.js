@@ -18,7 +18,8 @@ const AboutPage = () => {
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus
             vero labore veritatis impedit aperiam assumenda. Debitis non amet
             quis dolore. Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit. Fugiat, ullam?
+            elit. Fugiat, ullam? Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Quod, amet.
           </p>
         </article>
       </Wrapper>
