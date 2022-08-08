@@ -11,7 +11,9 @@ import { Auth0Provider } from '@auth0/auth0-react';
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 root.render(
-  <ProductsProvider>
-    <App />
-  </ProductsProvider>
+  <React.StrictMode>
+    <ProductsProvider>
+      <App />
+    </ProductsProvider>
+  </React.StrictMode>
 );
