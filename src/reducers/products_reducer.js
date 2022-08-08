@@ -33,13 +33,13 @@ const products_reducer = (state, action) => {
         single_product_loading: true,
         single_product_error: false,
       };
-    case GET_PRODUCTS_ERROR:
+    case GET_SINGLE_PRODUCT_ERROR:
       return {
         ...state,
         single_product_error: true,
         single_product_loading: false,
       };
-    case GET_PRODUCTS_SUCCESS:
+    case GET_SINGLE_PRODUCT_SUCCESS:
       return {
         ...state,
         single_product_loading: false,
