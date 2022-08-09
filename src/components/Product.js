@@ -5,6 +5,7 @@ import { TbZoomInArea } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 
 const Product = ({ image, name, price, id }) => {
+  console.log(price);
   return (
     <Wrapper>
       <div className="container">

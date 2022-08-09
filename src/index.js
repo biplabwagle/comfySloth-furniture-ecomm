@@ -13,7 +13,9 @@ const root = ReactDOM.createRoot(container);
 root.render(
   <React.StrictMode>
     <ProductsProvider>
-      <App />
+      <FilterProvider>
+        <App />
+      </FilterProvider>
     </ProductsProvider>
   </React.StrictMode>
 );
