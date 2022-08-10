@@ -8,4 +8,10 @@ export const formatPrice = (price) => {
   return newNumber;
 };
 
-export const getUniqueValues = () => {};
+export const getUniqueValues = (data, type) => {
+  let unique = data.map((item) => item[type]);
+  if (type === 'colors') {
+    unique = unique.flat(2);
+  }
+  return ['all', ...new Set(unique)];
+};
