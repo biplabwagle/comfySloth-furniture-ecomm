@@ -12,10 +12,17 @@ import {
 const filter_reducer = (state, action) => {
   switch (action.type) {
     case LOAD_PRODUCTS:
+      let maxPrice = action.payload.map((p) => p.price);
+      if (maxPrice[0]) {
+        maxPrice = maxPrice.reduce((prevVal, currVal) =>
+          prevVal > currVal ? prevVal : currVal
+        );
+      }
       return {
         ...state,
         all_products: [...action.payload],
         filtered_products: [...action.payload],
+        filters: { ...state.filters, max_price: maxPrice, price: maxPrice },
       };
     case SET_GRIDVIEW:
       return {
@@ -36,7 +43,6 @@ const filter_reducer = (state, action) => {
       const { sort, filtered_products } = state;
       let tempProducts = [...filtered_products];
       if (sort === 'price-lowest') {
-        console.log(tempProducts);
         tempProducts = tempProducts.sort((a, b) => a.price - b.price);
       }
       if (sort === 'price-highest') {
