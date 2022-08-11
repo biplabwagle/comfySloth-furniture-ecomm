@@ -63,7 +63,63 @@ const filter_reducer = (state, action) => {
       const { name, value } = action.payload;
       return { ...state, filters: { ...state.filters, [name]: value } };
     case FILTER_PRODUCTS:
-      return { ...state };
+      const { all_products } = state;
+      const {
+        textInput,
+        category,
+        color,
+        company,
+        shipping,
+        price,
+      } = state.filters;
+      let temporaryProducts = [...all_products];
+
+      //filtering based on scenarios
+      //filtering based on textInput
+      if (textInput) {
+        console.log('inside text input');
+        temporaryProducts = temporaryProducts.filter((product) => {
+          console.log(temporaryProducts);
+          return product.name.toLowerCase().startsWith(textInput);
+        });
+      }
+      //filtering based on category
+      if (category !== 'all') {
+        temporaryProducts = temporaryProducts.filter((product) => {
+          return product.category === category;
+        });
+      }
+
+      // filtering based on manufacturer
+      if (company !== 'all') {
+        temporaryProducts = temporaryProducts.filter(
+          (product) => product.company === company
+        );
+      }
+      //filtering based on color:
+      if (color !== 'all') {
+        temporaryProducts = temporaryProducts.filter((product) =>
+          product.colors.includes(color)
+        );
+      }
+
+      //filtering based on price
+      if (price >= 0) {
+        if (price === 0) {
+          temporaryProducts = [];
+        }
+        temporaryProducts = temporaryProducts.filter((product) => {
+          return product.price <= price;
+        });
+      }
+
+      //filtering based on shipping
+      if (shipping) {
+        temporaryProducts = temporaryProducts.filter(
+          (product) => product.shipping === true
+        );
+      }
+      return { ...state, filtered_products: temporaryProducts };
     case CLEAR_FILTERS:
       return {
         ...state,
