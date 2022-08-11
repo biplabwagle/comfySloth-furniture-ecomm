@@ -77,9 +77,7 @@ const filter_reducer = (state, action) => {
       //filtering based on scenarios
       //filtering based on textInput
       if (textInput) {
-        console.log('inside text input');
         temporaryProducts = temporaryProducts.filter((product) => {
-          console.log(temporaryProducts);
           return product.name.toLowerCase().startsWith(textInput);
         });
       }
