@@ -6,7 +6,9 @@ import { useCartContext } from '../context/cart_context';
 import AmountButtons from './AmountButtons';
 import { GiButtonFinger } from 'react-icons/gi';
 
-const AddToCart = ({ product: { id, stock, colors } }) => {
+const AddToCart = ({ product }) => {
+  const { id, stock, colors } = product;
+  const { addToCart } = useCartContext();
   const [mainColor, setMainColor] = useState(colors[0]);
   const [quantity, setQuantity] = useState(1);
   const increaseQuantity = () => {
@@ -50,7 +52,13 @@ const AddToCart = ({ product: { id, stock, colors } }) => {
           increaseQuantity={increaseQuantity}
           decreaseQuantity={decreaseQuantity}
         />
-        <Link to="/cart" className="btn">
+        <Link
+          to="/cart"
+          className="btn"
+          onClick={() => {
+            addToCart(id, mainColor, quantity, product);
+          }}
+        >
           add to cart
         </Link>
       </div>
