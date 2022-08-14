@@ -8,6 +8,7 @@ import {
   COUNT_CART_TOTALS,
 } from '../actions';
 
+//Get local cart from the previous session
 const getLocalCart = () => {
   let cart = localStorage.getItem('cart');
   if (cart.length > 0) {
@@ -18,6 +19,8 @@ const getLocalCart = () => {
 };
 
 const initialState = {
+  //get the cart from local storage if not then load
+  //cart as empty
   cart: getLocalCart(),
   total_items: 0,
   total_amount: 0,
@@ -38,12 +41,18 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: REMOVE_CART_ITEM, payload: id });
   };
   //toggle amount
-  const toggleAmount = (id, value) => {};
+  const toggleAmount = (id, value) => {
+    dispatch({ type: TOGGLE_CART_ITEM_AMOUNT, payload: { id, value } });
+  };
 
   //clear cart
-  const clearCart = () => {};
+  const clearCart = () => {
+    dispatch({ type: CLEAR_CART });
+  };
 
+  //useEffect to save item to localStorage everytime the state value of cart changes
   useEffect(() => {
+    dispatch({ type: COUNT_CART_TOTALS });
     localStorage.setItem('cart', JSON.stringify(state.cart));
   }, [state.cart]);
   return (
