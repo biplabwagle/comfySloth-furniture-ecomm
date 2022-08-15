@@ -5,13 +5,14 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useUserContext } from '../context/user_context';
 
 const PrivateRoute = ({ children }) => {
-  const { userClient } = useUserContext();
+  //A bug prevents navigation to protected routes when using the state value form use userContext so, the remedy is to access the useAuth0 right here and see if the user exists.
+  const { user } = useAuth0();
   /*
    *if user client does exists, which only happens after auth0
    *authentication, then return children which in this case is
    *checkout page
    */
-  if (userClient) {
+  if (user) {
     return children;
   }
   //otherwise return the user to the landing page
