@@ -10,6 +10,7 @@ import { useUserContext } from '../context/user_context';
 
 const Nav = () => {
   const { openSidebar } = useProductsContext();
+  const { userClient } = useUserContext();
   return (
     <NavContainer>
       <div className="nav-center">
@@ -30,6 +31,11 @@ const Nav = () => {
               </li>
             );
           })}
+          {userClient && (
+            <li>
+              <Link to="/checkout">checkout</Link>
+            </li>
+          )}
         </ul>
         <CartButtons />
       </div>

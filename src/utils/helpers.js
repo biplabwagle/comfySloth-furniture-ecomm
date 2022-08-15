@@ -1,5 +1,3 @@
-import { BsCurrencyBitcoin } from 'react-icons/bs';
-
 export const formatPrice = (price) => {
   const newNumber = Intl.NumberFormat('en-US', {
     style: 'currency',
